@@ -1,0 +1,94 @@
+.film-container {
+    padding: 16px 160px;
+    background-color: #1d1d1d;
+    padding: 120px 160px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+
+.card-film {
+    margin: 16px;
+    --bs-card-border-width: 0px !important;
+}
+
+
+.card-img {
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+
+.card-img:hover {
+    cursor: pointer;
+    opacity: 0.8;
+    border: #5fc732 2px solid;
+}
+
+.card-body {
+    padding: 8px 0px 0px 0px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 85px;
+}
+
+.card-title {
+    font-size: 16px;
+}
+
+.card-text {
+    font-size: 14px;
+}
+
+.centered-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.card-film:hover .centered-button {
+    opacity: 1;
+}
+
+.btn {
+    background-color: #171717 !important;
+    border: #5fc732 2px solid !important;
+}
+
+.btn:active {
+    opacity: 0.8;
+}
+
+.hovered-card {
+    cursor: pointer;
+    opacity: 0.8;
+    border: #5fc732 2px solid;
+}
+
+.rating-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 4px 8px;
+}
+
+.rating {
+    width: 30px;
+    height: 30px;
+    padding: 4px 8px;
+    background-color: #ffd700;
+    color: #000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

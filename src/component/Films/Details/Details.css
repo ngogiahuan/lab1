@@ -1,0 +1,169 @@
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px;
+    min-height: 100vh;
+    position: relative;
+}
+
+.bg-black {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0.6;
+}
+
+.bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-filter: blur(5px);
+}
+
+.details-container {
+    width: 80%;
+    height: 90%;
+    border: #4da129 1px solid;
+    padding: 28px;
+    border-radius: 8px;
+}
+
+.details-body {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 20px;
+    height: 420px;
+}
+
+.details-img {
+    padding-right: 20px;
+    height: 100%;
+}
+
+.details-img img {
+    width: 280px;
+    object-fit: cover;
+    height: 100%;
+}
+
+.details-infor {
+    height: 100% !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.detail-infor-content p {
+    font-weight: 700;
+}
+
+.detail-infor-content>p>span {
+    font-weight: 400;
+}
+
+#sub-title {
+    display: flex;
+    gap: 8px;
+}
+
+#film-duration,
+#film-releaseDate {
+    color: #848484;
+    background-color: #252525;
+    padding: 0px 8px;
+    border-radius: 8px;
+}
+
+#film-rating {
+    width: 30px;
+    height: 30px; 
+    padding: 4px 8px;
+    background-color: #ffd700;
+    color: #000;
+    border-radius: 50%; 
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.trailer-btn-container{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+}
+
+.button {
+    font-family: inherit;
+    font-size: 20px;
+    background: #ff0000;
+    color: white;
+    padding: 0.7em 1em;
+    padding-left: 0.9em;
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.2s;
+    width: 200px;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    z-index: 100;
+    cursor: pointer;
+    text-decoration: none;
+    color: #fff;
+}
+
+.button span {
+    display: block;
+    margin-left: 0.3em;
+    transition: all 0.3s ease-in-out;
+}
+
+.button svg {
+    display: block;
+    transform-origin: center center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.button:hover .svg-wrapper {
+    animation: fly-1 0.6s ease-in-out infinite alternate;
+}
+
+.button:hover svg {
+    transform: translateX(3em) rotate(45deg) scale(1.1);
+}
+
+.button:hover span {
+    transform: translateX(10em);
+}
+
+.button:active {
+    transform: scale(0.95);
+}
+
+@keyframes fly-1 {
+    from {
+        transform: translateY(0.1em);
+    }
+
+    to {
+        transform: translateY(-0.1em);
+    }
+}
