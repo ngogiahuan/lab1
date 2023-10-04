@@ -44,6 +44,7 @@ export default function Films() {
         <Card
           className="card-film col-2"
           style={{ backgroundColor: theme.backgroundColor, color: theme.color }}
+          key={film.title}
         >
           <Card.Img
             variant="top"
