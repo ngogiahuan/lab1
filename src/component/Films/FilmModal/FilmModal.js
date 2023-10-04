@@ -36,5 +36,6 @@ const style = {
   pt: 2,
   px: 4,
   pb: 3,
-  borderRadius: 4,
+  borderRadius: 2,
+  borderColor: '#4da129',
 };

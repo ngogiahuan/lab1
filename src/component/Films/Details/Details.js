@@ -33,7 +33,7 @@ export default function Details() {
                         {film.title} <span>({film.year})</span>
                     </h1>
                     <Chip label={film.duration} style={{ color: theme.color, userSelect: 'none' }} />
-                    <Chip label={film.releaseDate} style={{ color: theme.color, userSelect: 'none' }} />
+                    <Chip label={film.releaseDate} style={{ color: theme.color, userSelect: 'none', marginLeft: 8 }} />
                 </div>
                 <div className="details-body">
                     <div className="details-img">
