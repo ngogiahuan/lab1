@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { filmsData } from "../ListOfFilms";
 import "./Details.css";
 import { ThemeContext } from "../../ThemeContext";
+import Rating from '@mui/material/Rating';
+import Chip from '@mui/material/Chip';
 
 export default function Details() {
     const { theme } = useContext(ThemeContext);
@@ -30,9 +32,8 @@ export default function Details() {
                     <h1>
                         {film.title} <span>({film.year})</span>
                     </h1>
-                    <p id="sub-title">
-                        <span id="film-duration">{film.duration}</span> <span id="film-releaseDate">{film.releaseDate}</span>
-                    </p>
+                    <Chip label={film.duration} style={{ color: theme.color, userSelect: 'none' }} />
+                    <Chip label={film.releaseDate} style={{ color: theme.color, userSelect: 'none' }} />
                 </div>
                 <div className="details-body">
                     <div className="details-img">
@@ -47,7 +48,8 @@ export default function Details() {
                             <p>Actors: <span id="film-actor">{film.actor}</span></p>
                             <p>Genre: <span id="film-genres">{film.genres}</span></p>
                             <p>Language: <span id="film-language">{film.language}</span></p>
-                            <p>Rating: <span id="film-rating">{film.rating}</span></p></div>
+                            <Rating name="half-rating-read" defaultValue={film.rating / 2} precision={0.25} readOnly />
+                        </div>
                         <div className="trailer-btn-container">
                             <a className="button" href={film.trailer} target="_blank">
                                 <div class="svg-wrapper-1">

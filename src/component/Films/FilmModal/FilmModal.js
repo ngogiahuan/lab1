@@ -1,50 +1,40 @@
+import React from "react";
+import { Box, Modal } from "@mui/material";
+import { useContext } from "react";
+import { ThemeContext } from "../../ThemeContext";
+import Rating from '@mui/material/Rating';
 
-import Modal from "react-bootstrap/Modal";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./FilmModal.css";
 
-function FilmModal({ film, show, onHide }) {
+export default function FilmModal({ film, open, handleClose }) {
+  const theme = useContext(ThemeContext);
   return (
-    <>
-      <Modal
-        size="lg"
-        show={show}
-        onHide={onHide}
-        aria-labelledby="film-modal-title"
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="film-modal-title">
-            {film ? film.title : ""}
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {film ? (
-            <>
-              <div className="modal-content-infor">
-                <div className="modal-img">
-                  <img
-                    src={film.image}
-                    alt={film.title}
-                    style={{ height: "50vh" }}
-                  />
-                </div>
-                <div className="modal-infor">
-                  <h3 style={{ paddingTop: "10px" }}>{film.title}</h3>
-                  <p style={{ paddingTop: "10px" }}>Year: {film.year}</p>
-                  <p>Nation: {film.nation}</p>
-                  <p>{film.description}</p>
-                </div>
-
-                {/* Add other film details here */}
-              </div>
-            </>
-          ) : (
-            "Loading..."
-          )}
-        </Modal.Body>
-      </Modal>
-    </>
+    <Modal
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="film-modal-title"
+      aria-describedby="film-modal-description"
+    >
+      <Box sx={{ ...style, backgroundColor: theme.theme.backgroundColor, color: theme.theme.color }}>
+        <h2 id="film-modal-title">{film.title}</h2>
+        <p id="film-modal-description">{film.description}</p>
+        <Rating name="half-rating-read" defaultValue={film.rating / 2} precision={0.25} readOnly />
+      </Box>
+    </Modal>
   );
 }
 
-export default FilmModal;
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  pt: 2,
+  px: 4,
+  pb: 3,
+  borderRadius: 4,
+};

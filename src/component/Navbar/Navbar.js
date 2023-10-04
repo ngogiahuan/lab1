@@ -61,7 +61,7 @@ function NavbarComponent() {
     <AppBar
       position="static"
       className="navbar"
-      style={{ backgroundColor: theme.backgroundColor, color: theme.color }}
+      style={{ backgroundColor: theme.backgroundColor, color: theme.color, boxShadow: "none", position: "fixed" }}
     >
       <Toolbar className="toolbar">
         <ul className="nav-ul">

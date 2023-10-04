@@ -34,7 +34,7 @@ ul {
 .nav-ul li:hover {
   border: 2px solid #a3e583;
   cursor: pointer;
-  animation: button-shake 0.8s cubic-bezier(.36, .07, .19, .97) both;
+  transition: all 0.3s ease 0s;
 }
 
 .nav-ul li:active {
@@ -42,38 +42,6 @@ ul {
   border: 2px solid #a3e583;
 }
 
-@keyframes button-shake {
-
-  0%,
-  100% {
-    transform: rotate(0deg);
-    transform-origin: 50% 50%;
-  }
-
-  10% {
-    transform: rotate(2deg);
-  }
-
-  20%,
-  40%,
-  60% {
-    transform: rotate(-4deg);
-  }
-
-  30%,
-  50%,
-  70% {
-    transform: rotate(4deg);
-  }
-
-  80% {
-    transform: rotate(-4deg);
-  }
-
-  90% {
-    transform: rotate(2deg);
-  }
-}
 
 .active {
   background-color: #c2b506;

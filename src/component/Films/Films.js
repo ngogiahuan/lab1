@@ -1,90 +1,75 @@
 import React from "react";
 import { filmsData } from "./ListOfFilms";
-import "./Films.css";
-import Card from "react-bootstrap/Card";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
 import FilmModal from "./FilmModal/FilmModal";
 import { ThemeContext } from "../ThemeContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import { Button, CardActionArea, CardActions, Container, Grid } from '@mui/material';
+import "./Films.css"
 
 export default function Films() {
   const [selectedFilm, setSelectedFilm] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openPopUp = (film) => {
     setSelectedFilm(film);
+    setIsModalOpen(true);
   };
 
   const closePopUp = () => {
     setSelectedFilm(null);
+    setIsModalOpen(false);
   };
 
   const { theme } = useContext(ThemeContext);
-
-  const handleButtonHover = (event) => {
-    const cardImg = event.currentTarget
-      .closest(".card-film")
-      .querySelector(".card-img");
-    cardImg.classList.add("hovered-card");
-  };
-
-  const handleButtonLeave = (event) => {
-    const cardImg = event.currentTarget
-      .closest(".card-film")
-      .querySelector(".card-img");
-    cardImg.classList.remove("hovered-card");
-  };
   return (
     <div
-      className="film-container d-flex flex-wrap"
+      className="film-container"
       style={{ backgroundColor: theme.backgroundColor, color: theme.color }}
     >
-      {filmsData.map((film) => (
-        <Card
-          className="card-film col-2"
-          style={{ backgroundColor: theme.backgroundColor, color: theme.color }}
-          key={film.title}
-        >
-          <Card.Img
-            variant="top"
-            src={film.image}
-            style={{ height: "300px" }}
-            alt={film.title}
-            className="img-fluid card-img"
-            onClick={() => openPopUp(film)}
-            loading="lazy"
-          />
-          <div className="centered-button">
-            <Link to={'/details/' + film.title}>
-              <button
-                className="btn btn-primary"
-                onMouseEnter={handleButtonHover}
-                onMouseLeave={handleButtonLeave}
-              >
-                Details
-              </button>
-            </Link>
-          </div>
-          <Card.Body
-            className="card-body"
-            style={{
-              backgroundColor: theme.backgroundColor,
-              color: theme.color,
-            }}
-          >
-            <Card.Title className="card-title">{film.title}</Card.Title>
-            <Card.Text className="card-text">{film.year}</Card.Text>
-          </Card.Body>
-        </Card>
-      ))}
-      {
+      <Container>
+        <Grid container spacing={2}>
+          {filmsData.map((film) => (
+            <Grid item>
+              <Card sx={{ width: 200, height: 400 }} className="button-container-2">
+                <CardActionArea onClick={() => openPopUp(film)}>
+                  <CardMedia
+                    component="img"
+                    height="300"
+                    image={film.image}
+                    alt={film.title}
+                  />
+                  <CardContent sx={{ backgroundColor: theme.backgroundColor, color: theme.color, height: 100 }} >
+                    <Typography gutterBottom component="div" >
+                      {film.title}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+                <CardActions>
+                  <Link to={'/details/' + film.title}>
+                    <Button size="small" color="primary" className="details-btn">
+                      Details
+                    </Button>
+                  </Link>
+                </CardActions>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+      {selectedFilm && (
         <FilmModal
           film={selectedFilm}
-          show={!!selectedFilm}
-          onHide={closePopUp}
-        ></FilmModal>
-      }
+          open={isModalOpen}
+          handleClose={closePopUp}
+          theme={theme}
+        />
+      )}
     </div>
   );
 }
