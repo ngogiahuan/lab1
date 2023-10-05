@@ -9,12 +9,12 @@
 .about-card {
     border-radius: 8px;
     padding: 1rem;
-    margin: 1rem;
+    margin: 1rem !important;
     border: #79cd55 2px solid;
 }
 
 .card-item {
-    margin: 1rem;
+    margin: 1rem !important;
 }
 
 .card-img {
