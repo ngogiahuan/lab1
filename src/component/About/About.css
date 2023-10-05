@@ -1,0 +1,27 @@
+.about-container {
+    height: 100vh;
+}
+
+.about-grid {
+    height: 100%;
+}
+
+.about-card {
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem;
+    border: #79cd55 2px solid;
+}
+
+.card-item {
+    margin: 1rem;
+}
+
+.card-img {
+    border: #79cd55 2px solid;
+    border-radius: 50%;
+}
+
+.card-item a {
+    color: #79cd55;
+}
