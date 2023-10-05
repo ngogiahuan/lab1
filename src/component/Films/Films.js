@@ -43,6 +43,7 @@ export default function Films() {
                     height="300"
                     image={film.image}
                     alt={film.title}
+                    lazy="true"
                   />
                   <CardContent sx={{ backgroundColor: theme.backgroundColor, color: theme.color, height: 100 }} >
                     <Typography gutterBottom component="div" >
