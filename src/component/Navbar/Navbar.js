@@ -61,12 +61,17 @@ function NavbarComponent() {
     <AppBar
       position="static"
       className="navbar"
-      style={{ backgroundColor: theme.backgroundColor, color: theme.color, boxShadow: "none", position: "fixed" }}
+      style={{
+        backgroundColor: theme.backgroundColor,
+        color: theme.color,
+        boxShadow: "none",
+        position: "fixed",
+      }}
     >
       <Toolbar className="toolbar">
         <ul className="nav-ul">
           <li>
-            <Link to="/" style={{ color: theme.color }}>
+            <Link to="/home" style={{ color: theme.color }}>
               Home
             </Link>
           </li>

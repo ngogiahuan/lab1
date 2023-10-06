@@ -8,12 +8,12 @@ import News from "./component/News/News";
 import About from "./component/About/About";
 
 function App() {
-
   return (
     <>
       <Navbar />
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/home" element={<Main />} />
         <Route path="/news" element={<News />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
