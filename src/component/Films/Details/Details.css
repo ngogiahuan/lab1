@@ -127,7 +127,7 @@
     border-radius: 8px;
     overflow: hidden;
     transition: all 0.2s;
-    width: 145px;
+    width: 185px;
     position: absolute;
     bottom: 0px;
     right: 0px;
@@ -173,4 +173,20 @@
     to {
         transform: translateY(-0.1em);
     }
+}
+
+.details-container-not-found {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.center-modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: 0;
+    /* Remove focus outline when modal is active */
 }
