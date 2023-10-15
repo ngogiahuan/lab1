@@ -1,16 +1,10 @@
 import { Container, Grid, Skeleton, Typography } from "@mui/material";
 import React from "react";
 import "./About.css";
-import { ThemeContext } from "../ThemeContext";
 
 export default function News() {
-  const { theme } = React.useContext(ThemeContext);
   return (
-    <Container
-      className="about-container"
-      style={{ backgroundColor: theme.backgroundColor, color: theme.color }}
-      maxWidth="sx"
-    >
+    <Container className="about-container" maxWidth="sx">
       <Grid
         container
         direction="column"

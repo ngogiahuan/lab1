@@ -1,0 +1,7 @@
+/* Custom styles to remove the focus outline and set a custom color */
+.custom-select.MuiSelect-root:focus {
+    outline: none;
+    /* Remove the focus outline */
+    border: none;
+    /* Replace 'your-custom-color' with your desired color */
+}

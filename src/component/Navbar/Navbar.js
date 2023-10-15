@@ -1,71 +1,22 @@
 import React, { useContext } from "react";
-import {
-  AppBar,
-  Toolbar,
-  InputBase,
-  alpha,
-  styled,
-  Switch,
-  Grid,
-} from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import { ThemeContext } from "../ThemeContext";
+import { AppBar, Toolbar, Switch, Grid } from "@mui/material";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
-
-const Search = styled("div")(({ theme }) => ({
-  position: "relative",
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginLeft: 0,
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(1),
-    width: "auto",
-  },
-}));
-
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      width: "12ch",
-      "&:focus": {
-        width: "20ch",
-      },
-    },
-  },
-}));
+import { ThemeContext } from "../ThemeContext";
 
 function NavbarComponent() {
   const { theme, toggle } = useContext(ThemeContext);
+
+  console.log(theme);
 
   return (
     <AppBar
       position="static"
       className="navbar"
       style={{
-        backgroundColor: theme.backgroundColor,
-        color: theme.color,
         boxShadow: "none",
         position: "fixed",
+        backgroundColor: theme.backgroundColor,
       }}
     >
       <Toolbar className="toolbar">
@@ -92,18 +43,20 @@ function NavbarComponent() {
           </li>
         </ul>
 
+        <img
+          src="https://image.tmdb.org/t/p/original/tyHnxjQJLH6h4iDQKhN5iqebWmX.png"
+          alt="netflix"
+          style={{
+            width: "100px",
+            height: "auto",
+            position: "absolute",
+            left: "50%",
+            transform: "translateX(-50%)",
+          }}
+        />
+
         <Grid container alignItems="center" style={{ width: "auto" }}>
-          <Grid item>
-            <Search>
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="Search…"
-                inputProps={{ "aria-label": "search" }}
-              />
-            </Search>
-          </Grid>
+          <Grid item></Grid>
           <Grid item>
             <div className="button-container">
               <Switch color="default" onChange={toggle} />

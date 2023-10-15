@@ -1,95 +1,58 @@
 import React from "react";
-import { filmsData } from "./ListOfFilms";
-import { useState } from "react";
-import FilmModal from "./FilmModal/FilmModal";
-import { ThemeContext } from "../ThemeContext";
-import { useContext } from "react";
-import { Link } from "react-router-dom";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import {
-  Button,
-  CardActionArea,
-  CardActions,
-  Container,
-  Grid,
-} from "@mui/material";
+import { Container, Grid, Pagination, Typography } from "@mui/material";
 import "./Films.css";
+import FilmCard from "./FilmCard/FilmCard";
+import { useFilmsData } from "../../api/tmdbAPI";
+import Paging from "./Paging";
+import CategorySelect from "./CategorySelect/CategorySelect";
 
 export default function Films() {
-  const [selectedFilm, setSelectedFilm] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [page, setPage] = React.useState(1);
+  const [category, setCategory] = React.useState("now_playing");
+  const [searchQuery, setSearchQuery] = React.useState(null);
 
-  const openPopUp = (film) => {
-    setSelectedFilm(film);
-    setIsModalOpen(true);
+  const handleChangePage = (event, value) => {
+    setPage(value);
   };
 
-  const closePopUp = () => {
-    setSelectedFilm(null);
-    setIsModalOpen(false);
+  const handleChangeCategory = (event) => {
+    setCategory(event.target.value);
   };
 
-  const { theme } = useContext(ThemeContext);
+  const { filmsData, totalPage } = useFilmsData(page, category);
+
   return (
-    <div
-      className="film-container"
-      style={{ backgroundColor: theme.backgroundColor, color: theme.color }}
-    >
+    <div className="film-container">
       <Container>
-        <Grid container spacing={2}>
-          {filmsData.map((film) => (
+        <Grid container spacing={2} justifyContent="center">
+          <Grid
+            item
+            container
+            spacing={2}
+            justifyContent="flex-end"
+            style={{ backgroundColor: "#000" }}
+          >
             <Grid item>
-              <Card
-                sx={{ width: 200, height: 400 }}
-                className="button-container-2"
-              >
-                <CardActionArea onClick={() => openPopUp(film)}>
-                  <CardMedia
-                    component="img"
-                    height="300"
-                    image={film.image}
-                    alt={film.title}
-                    lazy="true"
-                  />
-                  <CardContent
-                    sx={{
-                      backgroundColor: theme.backgroundColor,
-                      color: theme.color,
-                      height: 100,
-                    }}
-                  >
-                    <Typography gutterBottom component="div">
-                      {film.title}
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-                <CardActions>
-                  <Link to={"/details/" + film.title}>
-                    <Button
-                      size="small"
-                      color="primary"
-                      className="details-btn"
-                    >
-                      Details
-                    </Button>
-                  </Link>
-                </CardActions>
-              </Card>
+              <CategorySelect
+                category={category}
+                handleChangeCategory={handleChangeCategory}
+              />
             </Grid>
-          ))}
+          </Grid>
+          <Grid item container spacing={2} justifyContent="center">
+            {filmsData.map((film) => (
+              <FilmCard film={film} key={film.id} />
+            ))}
+          </Grid>
+          {/* <Grid item>
+            <Paging
+              totalPage={totalPage}
+              page={page}
+              handleChange={handleChangePage}
+            />
+          </Grid> */}
         </Grid>
       </Container>
-      {selectedFilm && (
-        <FilmModal
-          film={selectedFilm}
-          open={isModalOpen}
-          handleClose={closePopUp}
-          theme={theme}
-        />
-      )}
     </div>
   );
 }
