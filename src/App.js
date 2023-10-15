@@ -6,7 +6,6 @@ import { Routes, Route } from "react-router-dom";
 import News from "./component/News/News";
 import About from "./component/About/About";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-
 function App() {
   return (
     <>

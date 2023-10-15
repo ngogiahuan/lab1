@@ -9,33 +9,15 @@ export default function CategorySelect({ category, handleChangeCategory }) {
   const theme = useContext(ThemeContext);
 
   const selectTheme = createTheme({
-    components: {
-      MuiSelect: {
-        styleOverrides: {
-          root: {
-            backgroundColor: theme.theme.backgroundColor,
-            color: theme.theme.color,
-            border: `1px solid ${theme.theme.secondaryColor}`,
-          },
-          icon: {
-            color: theme.theme.secondaryColor,
-          },
-          // Add hover styles here
-          // Change borderColor when hovering
-          "&:hover": {
-            borderColor: theme.theme.secondaryColor,
-          },
-          // Change color when selected
-          "&.Mui-focused": {
-            backgroundColor: theme.theme.backgroundColor,
-            color: theme.theme.color,
-            border: `1px solid ${theme.theme.secondaryColor}`,
-          },
-        },
+    palette: {
+      primary: {
+        main: "#dc1a28",
+      },
+      secondary: {
+        main: "#dc1a28",
       },
     },
   });
-
   return (
     <ThemeProvider theme={selectTheme}>
       <Select
@@ -44,6 +26,20 @@ export default function CategorySelect({ category, handleChangeCategory }) {
         displayEmpty
         inputProps={{ "aria-label": "Without label" }}
         size="small"
+        style={{ width: "150px" }}
+        sx={{
+          "& .MuiSelect-select": {
+            color: theme.theme.color,
+            backgroundColor: `${theme.theme.textBackgroundColor} !important`,
+          },
+          "& .MuiSelect-icon": {
+            color: theme.theme.color,
+          },
+          "& .MuiPaper-root": {
+            backgroundColor: theme.theme.textBackgroundColor,
+            color: theme.theme.color,
+          },
+        }}
       >
         <MenuItem value="now_playing">Now Playing</MenuItem>
         <MenuItem value="popular">Popular</MenuItem>

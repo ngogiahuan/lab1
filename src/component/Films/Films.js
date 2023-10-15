@@ -5,6 +5,7 @@ import FilmCard from "./FilmCard/FilmCard";
 import { useFilmsData } from "../../api/tmdbAPI";
 import Paging from "./Paging";
 import CategorySelect from "./CategorySelect/CategorySelect";
+import SearchBar from "./SearchBar/SearchBar";
 
 export default function Films() {
   const [page, setPage] = React.useState(1);
@@ -19,8 +20,11 @@ export default function Films() {
     setCategory(event.target.value);
   };
 
-  const { filmsData, totalPage } = useFilmsData(page, category);
+  const handleChangeSearchQuery = (value) => {
+    setSearchQuery(value);
+  };
 
+  const { filmsData, totalPage } = useFilmsData(page, category, searchQuery);
   return (
     <div className="film-container">
       <Container>
@@ -30,8 +34,12 @@ export default function Films() {
             container
             spacing={2}
             justifyContent="flex-end"
-            style={{ backgroundColor: "#000" }}
+            style={{ padding: "0px 44px" }}
+            alignItems="center"
           >
+            <Grid item>
+              <SearchBar handleChangeSearchQuery={handleChangeSearchQuery} />
+            </Grid>
             <Grid item>
               <CategorySelect
                 category={category}
@@ -44,13 +52,13 @@ export default function Films() {
               <FilmCard film={film} key={film.id} />
             ))}
           </Grid>
-          {/* <Grid item>
+          <Grid item>
             <Paging
               totalPage={totalPage}
               page={page}
               handleChange={handleChangePage}
             />
-          </Grid> */}
+          </Grid>
         </Grid>
       </Container>
     </div>

@@ -35,7 +35,11 @@ const useFilmsData = (page, category, searchQuery = null) => {
       .then((response) => response.json())
       .then((data) => {
         setFilmsData(data.results);
-        setTotalPage(data.total_pages);
+        if (data.total_pages > 100) {
+          setTotalPage(100);
+        } else {
+          setTotalPage(data.total_pages);
+        }
         // console.log(data.results);
       })
       .catch((error) => {

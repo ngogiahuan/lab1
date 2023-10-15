@@ -6,11 +6,15 @@ const themes = {
     backgroundColor: "#000",
     color: "#fff",
     secondaryColor: "#dc1a28",
+    textBackgroundColor: "#1f1f1f",
+    secondarytextColor: "#fff",
   },
   light: {
     backgroundColor: "#fff",
     color: "#000",
     secondaryColor: "#dc1a28",
+    textBackgroundColor: "#fff",
+    secondarytextColor: "#fff",
   },
 };
 
