@@ -1,4 +1,4 @@
-import { Box, Button, Chip, Grid, Typography } from "@mui/material";
+import { Box, Button, Chip, Grid, Rating, Typography } from "@mui/material";
 import React from "react";
 import { useFilmDetail } from "../../../api/tmdbAPI";
 import { Image } from "@mui/icons-material";
@@ -72,6 +72,19 @@ export default function SwiperFilmDetail({ filmID }) {
               <Typography variant="h4" sx={{ color: "white" }}>
                 {filmDetails.original_title} ({filmsDetailsYear})
               </Typography>
+            </Grid>
+            <Grid item>
+              <Rating
+                name="read-only"
+                value={filmDetails.vote_average / 2}
+                precision={0.1}
+                readOnly
+                sx={{
+                  "& .css-1c99szj-MuiRating-icon ": {
+                    color: "#faaf00",
+                  },
+                }}
+              />
             </Grid>
             <Grid item container spacing={2}>
               {filmDetails.genres &&
