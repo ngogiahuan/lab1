@@ -1,16 +1,13 @@
 .navbar {
-<<<<<<< HEAD
   background-color: #171717;
-=======
-  padding: 0px 24px;
->>>>>>> 694b544926cba916cf508ff0ceab4e2a00dfc28a
+  padding: 16px 24px;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 999;
   width: 100%;
   justify-content: space-between;
-  border-bottom: 4px solid #dc1a28;
+  border-bottom: 4px solid rgba(90, 194, 45, 0.81);
 }
 
 .nav-ul {
@@ -25,11 +22,7 @@ ul {
 
 .nav-ul li {
   list-style: none;
-<<<<<<< HEAD
-  padding: 8px 20px;
-=======
-  padding: 8px 16px;
->>>>>>> 694b544926cba916cf508ff0ceab4e2a00dfc28a
+  padding: 16px 20px;
   border: 2px solid transparent;
   transition: all 0.3s ease 0s;
   margin: 0px 4px;
@@ -39,22 +32,24 @@ ul {
 }
 
 .nav-ul li:hover {
-<<<<<<< HEAD
-  border-bottom: 2px solid #a3e583;
-=======
-  border-bottom: 1px solid #dc1a28;
->>>>>>> 694b544926cba916cf508ff0ceab4e2a00dfc28a
+  border: 2px solid #a3e583;
   cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+
+.nav-ul li:active {
+  background-color: #7db064;
+  border: 2px solid #a3e583;
 }
 
 
 .active {
-  background-color: #dc1a28;
+  background-color: #c2b506;
 }
 
 .nav-ul li a {
   text-decoration: none;
-  color: #000;
+  color: white;
   display: flex;
   align-items: center;
 }
@@ -160,7 +155,7 @@ ul {
 
 .switch {
   --secondary-container: #3a4b39;
-  --primary: #dc1a28;
+  --primary: #84da89;
   font-size: 17px;
   position: relative;
   display: inline-block;
@@ -264,5 +259,4 @@ input:checked+.slider:before {
   width: 100% !important;
   display: flex;
   justify-content: space-between !important;
-  position: relative;
 }

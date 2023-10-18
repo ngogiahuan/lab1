@@ -1,119 +1,95 @@
 import React from "react";
-import { Box, Container, Grid, Pagination, Typography } from "@mui/material";
-import "./Films.css";
-import FilmCard from "./FilmCard/FilmCard";
-import { useFilmsData } from "../../api/tmdbAPI";
-import Paging from "./Paging";
-import CategorySelect from "./CategorySelect/CategorySelect";
-import SearchBar from "./SearchBar/SearchBar";
-import { useContext } from "react";
+import { filmsData } from "./ListOfFilms";
+import { useState } from "react";
+import FilmModal from "./FilmModal/FilmModal";
 import { ThemeContext } from "../ThemeContext";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import {
+  Button,
+  CardActionArea,
+  CardActions,
+  Container,
+  Grid,
+} from "@mui/material";
+import "./Films.css";
 
 export default function Films() {
-  const theme = useContext(ThemeContext);
-  const [page, setPage] = React.useState(1);
-  const [category, setCategory] = React.useState("now_playing");
-  const [searchQuery, setSearchQuery] = React.useState(null);
+  const [selectedFilm, setSelectedFilm] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleChangePage = (event, value) => {
-    setPage(value);
+  const openPopUp = (film) => {
+    setSelectedFilm(film);
+    setIsModalOpen(true);
   };
 
-  const handleChangeCategory = (event) => {
-    setCategory(event.target.value);
+  const closePopUp = () => {
+    setSelectedFilm(null);
+    setIsModalOpen(false);
   };
 
-  const handleChangeSearchQuery = (value) => {
-    setSearchQuery(value);
-  };
-
-  const { filmsData, totalPage } = useFilmsData(page, category, searchQuery);
-
+  const { theme } = useContext(ThemeContext);
   return (
-    <div className="film-container">
+    <div
+      className="film-container"
+      style={{ backgroundColor: theme.backgroundColor, color: theme.color }}
+    >
       <Container>
-        <Grid container spacing={2} justifyContent="center">
-          <Grid
-            item
-            container
-            spacing={2}
-            justifyContent="flex-end"
-            style={{ padding: "0px 44px" }}
-            alignItems="center"
-          >
+        <Grid container spacing={2}>
+          {filmsData.map((film) => (
             <Grid item>
-<<<<<<< HEAD
               <Card
                 sx={{ width: 200, height: 400 }}
                 className="button-container-2"
-                elevation={0}
               >
                 <CardActionArea onClick={() => openPopUp(film)}>
-                  <Link to={"/details/" + film.id}>
-                    <CardMedia
-                      component="img"
-                      height="300"
-                      image={film.image}
-                      alt={film.title}
-                      lazy="true"
-                    />
-                  </Link>
+                  <CardMedia
+                    component="img"
+                    height="300"
+                    image={film.image}
+                    alt={film.title}
+                    lazy="true"
+                  />
+                  <CardContent
+                    sx={{
+                      backgroundColor: theme.backgroundColor,
+                      color: theme.color,
+                      height: 100,
+                    }}
+                  >
+                    <Typography gutterBottom component="div">
+                      {film.title}
+                    </Typography>
+                  </CardContent>
                 </CardActionArea>
-                <CardContent
-                  sx={{
-                    backgroundColor: theme.backgroundColor,
-                    color: theme.color,
-                    height: 100,
-                  }}
-                >
-                  <Typography gutterBottom component="div">
-                    {film.title}
-                  </Typography>
-                </CardContent>
+                <CardActions>
+                  <Link to={"/details/" + film.title}>
+                    <Button
+                      size="small"
+                      color="primary"
+                      className="details-btn"
+                    >
+                      Details
+                    </Button>
+                  </Link>
+                </CardActions>
               </Card>
-=======
-              <SearchBar handleChangeSearchQuery={handleChangeSearchQuery} />
->>>>>>> 694b544926cba916cf508ff0ceab4e2a00dfc28a
             </Grid>
-            <Grid item>
-              <CategorySelect
-                category={category}
-                handleChangeCategory={handleChangeCategory}
-              />
-            </Grid>
-          </Grid>
-          <Grid item container spacing={2} justifyContent="center">
-            {filmsData.length === 0 ? (
-              <Box
-                style={{
-                  with: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  height: "300px",
-                }}
-              >
-                <Typography
-                  variant="h4"
-                  align="center"
-                  style={{ color: theme.theme.color }}
-                >
-                  No result found
-                </Typography>
-              </Box>
-            ) : (
-              filmsData.map((film) => <FilmCard film={film} key={film.id} />)
-            )}
-          </Grid>
-          <Grid item>
-            <Paging
-              totalPage={totalPage}
-              page={page}
-              handleChange={handleChangePage}
-            />
-          </Grid>
+          ))}
         </Grid>
       </Container>
+      {selectedFilm && (
+        <FilmModal
+          film={selectedFilm}
+          open={isModalOpen}
+          handleClose={closePopUp}
+          theme={theme}
+        />
+      )}
     </div>
   );
 }
