@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useContext } from "react";
 import { Container, Grid, Typography, Paper } from "@mui/material";
 import { ThemeContext } from "../ThemeContext";
@@ -23,6 +24,15 @@ export default function News() {
 
   return (
     <Container style={styles.container}>
+=======
+import { Container, Grid } from "@mui/material";
+import React from "react";
+import "./News.css";
+
+export default function News() {
+  return (
+    <Container className="news-container" maxWidth="sx">
+>>>>>>> 694b544926cba916cf508ff0ceab4e2a00dfc28a
       <Grid
         container
         direction="column"

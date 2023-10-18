@@ -1,6 +1,5 @@
 import React from "react";
 import "./Contact.css";
-import { ThemeContext } from "../ThemeContext";
 import { Button, Container, TextField } from "@mui/material";
 import { createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
 import { useState } from "react";
@@ -53,6 +52,7 @@ const customTheme = (outerTheme) =>
   });
 
 export default function Contact() {
+<<<<<<< HEAD
   const { theme, dark } = React.useContext(ThemeContext);
   const outerTheme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -193,4 +193,51 @@ export default function Contact() {
       </Container>
     </div>
   );
+=======
+  const outerTheme = useTheme();
+  const [open, setOpen] = React.useState(false);
+  const [errorSnackbar, setErrorSnackbar] = React.useState(false);
+
+  // State for form fields
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  const handleClodeError = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setErrorSnackbar(false);
+  };
+
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+    },
+    onSubmit: (values) => {},
+    validationSchema: Yup.object({
+      name: Yup.string().required("Required").min(3, "Too Short!"),
+      email: Yup.string().email("Invalid email address").required("Required"),
+      phone: Yup.string().required("Required").min(10, "Too Short!"),
+      message: Yup.string(),
+    }),
+  });
+
+  return <div></div>;
+>>>>>>> 694b544926cba916cf508ff0ceab4e2a00dfc28a
 }

@@ -1,17 +1,8 @@
 import React, { useContext } from "react";
-import {
-  AppBar,
-  Toolbar,
-  InputBase,
-  alpha,
-  styled,
-  Switch,
-  Grid,
-} from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import { ThemeContext } from "../ThemeContext";
+import { AppBar, Toolbar, Switch, Grid } from "@mui/material";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
+<<<<<<< HEAD
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -59,19 +50,23 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     borderRadius: 20 / 2,
   },
 }));
+=======
+import { ThemeContext } from "../ThemeContext";
+>>>>>>> 694b544926cba916cf508ff0ceab4e2a00dfc28a
 
 function NavbarComponent() {
   const { theme, toggle } = useContext(ThemeContext);
+
+  console.log(theme);
 
   return (
     <AppBar
       position="static"
       className="navbar"
       style={{
-        backgroundColor: theme.backgroundColor,
-        color: theme.color,
         boxShadow: "none",
         position: "fixed",
+        backgroundColor: theme.backgroundColor,
       }}
     >
       <Toolbar className="toolbar">
@@ -98,11 +93,28 @@ function NavbarComponent() {
           </li>
         </ul>
 
+<<<<<<< HEAD
         <Grid
           container
           alignItems="center"
           style={{ width: "auto", marginRight: "50px" }}
         >
+=======
+        <img
+          src="https://image.tmdb.org/t/p/original/tyHnxjQJLH6h4iDQKhN5iqebWmX.png"
+          alt="netflix"
+          style={{
+            width: "100px",
+            height: "auto",
+            position: "absolute",
+            left: "50%",
+            transform: "translateX(-50%)",
+          }}
+        />
+
+        <Grid container alignItems="center" style={{ width: "auto" }}>
+          <Grid item></Grid>
+>>>>>>> 694b544926cba916cf508ff0ceab4e2a00dfc28a
           <Grid item>
             <div className="button-container">
               <MaterialUISwitch onChange={toggle} />
