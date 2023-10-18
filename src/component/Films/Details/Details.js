@@ -7,14 +7,21 @@ import Rating from "@mui/material/Rating";
 import Chip from "@mui/material/Chip";
 import { useState } from "react";
 import Modal from "@mui/material/Modal";
-
+import Button from "@mui/material/Button";
+import { ThemeProvider, createTheme } from "@mui/material";
 export default function Details() {
-  const { theme } = useContext(ThemeContext);
-  const { title } = useParams();
-  const film = filmsData.find((obj) => {
-    return obj.title == title;
+  const btnTheme = createTheme({
+    palette: {
+      primary: {
+        main: "#f44336",
+      },
+    },
   });
-  const backgroundImage = film ? `url(${film.image})` : null;
+  const { theme } = useContext(ThemeContext);
+  const { id } = useParams();
+  const film = filmsData.find((obj) => {
+    return obj.id == id;
+  });
 
   // State to control the visibility of the modal
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -37,19 +44,17 @@ export default function Details() {
       >
         <div className="details-header-not-found">
           <h1>
-            {title} <span>(Not Found)</span>
+            <span>(Not Found)</span>
           </h1>
         </div>
       </div>
     );
   }
   return (
-    <div className="card-container">
-      <div
-        className="bg-img"
-        style={{ backgroundImage: backgroundImage }}
-      ></div>
-      <div className="bg-black"></div>
+    <div
+      className="card-container"
+      style={{ backgroundColor: theme.backgroundColor, color: theme.color }}
+    >
       <div
         className="details-container"
         style={{ backgroundColor: theme.backgroundColor, color: theme.color }}
@@ -102,25 +107,15 @@ export default function Details() {
               />
             </div>
             <div className="trailer-btn-container">
-              <button className="button" onClick={openModal}>
-                <div class="svg-wrapper-1">
-                  <div class="svg-wrapper">
-                    <svg
-                      height="24"
-                      width="24"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M0 0h24v24H0z" fill="none"></path>
-                      <path
-                        d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
-                        fill="currentColor"
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
-                <span>Watch Trailer</span>
-              </button>
+              <ThemeProvider theme={btnTheme}>
+                <Button
+                  variant="outlined"
+                  className="button"
+                  onClick={openModal}
+                >
+                  Trailer
+                </Button>
+              </ThemeProvider>
             </div>
           </div>
         </div>

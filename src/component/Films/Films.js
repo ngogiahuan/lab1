@@ -45,38 +45,30 @@ export default function Films() {
               <Card
                 sx={{ width: 200, height: 400 }}
                 className="button-container-2"
+                elevation={0}
               >
                 <CardActionArea onClick={() => openPopUp(film)}>
-                  <CardMedia
-                    component="img"
-                    height="300"
-                    image={film.image}
-                    alt={film.title}
-                    lazy="true"
-                  />
-                  <CardContent
-                    sx={{
-                      backgroundColor: theme.backgroundColor,
-                      color: theme.color,
-                      height: 100,
-                    }}
-                  >
-                    <Typography gutterBottom component="div">
-                      {film.title}
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-                <CardActions>
-                  <Link to={"/details/" + film.title}>
-                    <Button
-                      size="small"
-                      color="primary"
-                      className="details-btn"
-                    >
-                      Details
-                    </Button>
+                  <Link to={"/details/" + film.id}>
+                    <CardMedia
+                      component="img"
+                      height="300"
+                      image={film.image}
+                      alt={film.title}
+                      lazy="true"
+                    />
                   </Link>
-                </CardActions>
+                </CardActionArea>
+                <CardContent
+                  sx={{
+                    backgroundColor: theme.backgroundColor,
+                    color: theme.color,
+                    height: 100,
+                  }}
+                >
+                  <Typography gutterBottom component="div">
+                    {film.title}
+                  </Typography>
+                </CardContent>
               </Card>
             </Grid>
           ))}
